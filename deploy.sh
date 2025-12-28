@@ -35,7 +35,10 @@ TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 # Pull latest changes from Git (if using Git)
 echo -e "${YELLOW}Step 2: Pulling latest changes from repository...${NC}"
 if [ -d .git ]; then
-    git pull origin main || git pull origin master
+    # Get the current branch
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    echo "Current branch: $CURRENT_BRANCH"
+    git pull origin "$CURRENT_BRANCH"
     echo -e "${GREEN}Repository updated successfully${NC}"
 else
     echo -e "${YELLOW}Not a git repository, skipping...${NC}"
@@ -43,7 +46,13 @@ fi
 
 # Install dependencies
 echo -e "${YELLOW}Step 3: Installing dependencies...${NC}"
-npm ci --production || npm install --production
+if [ -f package-lock.json ]; then
+    echo "Using npm ci for reproducible build..."
+    npm ci --production
+else
+    echo "package-lock.json not found, using npm install..."
+    npm install --production
+fi
 echo -e "${GREEN}Dependencies installed successfully${NC}"
 
 # Build the application

@@ -30,9 +30,9 @@ else
     echo -e "${GREEN}✓ .env file exists${NC}"
     
     # Check for placeholder values
-    if grep -q "CHANGE_ME" .env 2>/dev/null; then
-        echo -e "${RED}✗ .env contains placeholder values (CHANGE_ME)${NC}"
-        echo "  Please replace all CHANGE_ME values with actual configuration"
+    if grep -q "CHANGE_ME\|GENERATE_SECURE_KEY" .env 2>/dev/null; then
+        echo -e "${RED}✗ .env contains placeholder values${NC}"
+        echo "  Please replace all placeholder values with actual secure keys"
         ERRORS=$((ERRORS + 1))
     else
         echo -e "${GREEN}✓ No placeholder values found${NC}"
@@ -60,7 +60,7 @@ echo ""
 # Check Node.js version
 echo -e "${YELLOW}Checking Node.js version...${NC}"
 if command -v node &> /dev/null; then
-    NODE_VERSION=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
+    NODE_VERSION=$(node --version | sed 's/v//' | cut -d'.' -f1)
     if [ "$NODE_VERSION" -ge 20 ]; then
         echo -e "${GREEN}✓ Node.js $(node --version) is installed (required: >= 20.x)${NC}"
     else
