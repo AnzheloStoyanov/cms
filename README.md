@@ -34,6 +34,23 @@ yarn build
 
 ## ⚙️ Deployment
 
+### Deploying to Hostinger
+
+This project is ready to be deployed to Hostinger. For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+**Quick deployment steps:**
+
+1. SSH into your Hostinger server
+2. Clone this repository or upload files
+3. Copy `.env.production` to `.env` and configure your environment variables
+4. Run the deployment script:
+   ```bash
+   chmod +x deploy.sh
+   ./deploy.sh
+   ```
+
+**For more deployment options:**
+
 Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
 
 ```
