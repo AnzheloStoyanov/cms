@@ -129,3 +129,13 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+
+############################
+# Deployment
+############################
+
+backups
+logs
+*.log
+.env.production.local
+.DS_Store
