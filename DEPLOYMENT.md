@@ -116,7 +116,15 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 
 ```bash
 cd ~/public_html/cms
+
+# Validate environment configuration (optional but recommended)
+chmod +x validate-env.sh
+./validate-env.sh
+
+# Install dependencies
 npm install --production
+
+# Build the application
 npm run build
 ```
 

@@ -51,19 +51,25 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 npm install -g pm2
 ```
 
-### 6. Run deployment script
+### 6. Validate environment configuration (optional but recommended)
+```bash
+chmod +x validate-env.sh
+./validate-env.sh
+```
+
+### 7. Run deployment script
 ```bash
 chmod +x deploy.sh
 ./deploy.sh
 ```
 
-### 7. Set up PM2 to start on reboot
+### 8. Set up PM2 to start on reboot
 ```bash
 pm2 startup
 pm2 save
 ```
 
-### 8. Configure domain in hPanel
+### 9. Configure domain in hPanel
 
 1. Go to hPanel → Advanced → Node.js
 2. Create Node.js application:
@@ -74,14 +80,14 @@ pm2 save
 
 Alternatively, configure Apache proxy using the `.htaccess` file (already included).
 
-### 9. Enable SSL
+### 10. Enable SSL
 
 In hPanel:
 1. Go to SSL section
 2. Select your domain
 3. Install SSL certificate (Free Let's Encrypt)
 
-### 10. Access your CMS
+### 11. Access your CMS
 
 - Admin: `https://yourdomain.com/admin`
 - API: `https://yourdomain.com/api`
